@@ -21,9 +21,9 @@ with open(budget_csv, newline="") as csvfile:
             profit.append(int(row[1]))
         else: losses.append(int(row[1]))
         
-        for i in range(1,len(amount)):
-            change_in_amount.append(amount[i] - amount[i-1])            
-        
+    for i in range(1,len(amount)):
+        change_in_amount.append(amount[i] - amount[i-1])   
+        avg_change = sum(change_in_amount)/len(change_in_amount)
 
 totalmonths = len(date)
 totalprofitloss = sum(amount)
@@ -35,4 +35,5 @@ greatestprofit = max(profit)
 #print(totalmonths)
 #print(totalprofitloss)
 #print(greatestprofit)
-print(change_in_amount)
+#print(change_in_amount)
+print (round(avg_change, 2))
