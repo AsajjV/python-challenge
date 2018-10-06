@@ -1,31 +1,38 @@
 import os
 import csv
 budget_csv = os.path.join("budget_data.csv")
+
+date = []
+profit = []
+losses = []
+amount = []
+change_in_amount = []
+
 with open(budget_csv, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
-    csvheader = next(csvfile)
+    csvheader = next(csvreader)
     print (csvheader) 
-    
-    #Date=csvheader.index("Date")
-    #ProfitLosses=csvheader.index("Profit/Losses")
-
-    sum_profit = 0
-    sum_loss = 0
-    amount = 0
 
     for row in csvreader:
-        amount = float(row[1])
-        if float(amount) > 0:
-            sum_profit = float(sum_profit) + float(amount)
-        else:
-            sum_loss = float(sum_loss) + float(amount)
-    
-    totalProfLoss=sum_loss + sum_profit
-    num_months = len(list(csv.reader(open('budget_data.csv'))))-1
+        date.append(row[0])
+        amount.append(int(row[1]))
+        if int(row[1]) > 0:
+            profit.append(int(row[1]))
+        else: losses.append(int(row[1]))
+        
+        for i in range(1,len(amount)):
+            change_in_amount.append(amount[i] - amount[i-1])            
+        
 
-
-print ("Financial Analysis")
-print ("-------------------------")
-print (f"Total Months:  {num_months}")
-print (f"Total:  ${totalProfLoss}")
+totalmonths = len(date)
+totalprofitloss = sum(amount)
+greatestprofit = max(profit)
+#print(profit)
+#print(losses)
+#print (date)
+#print(change_in_amount)        
+#print(totalmonths)
+#print(totalprofitloss)
+#print(greatestprofit)
+print(change_in_amount)
