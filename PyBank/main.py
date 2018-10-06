@@ -25,9 +25,17 @@ with open(budget_csv, newline="") as csvfile:
         change_in_amount.append(amount[i] - amount[i-1])   
         avg_change = sum(change_in_amount)/len(change_in_amount)
 
+        greatestprofit=max(change_in_amount)
+        month_greatest_profit = str(date[change_in_amount.index(greatestprofit)])
+
+        greatestloss=min(change_in_amount)
+        month_greatest_loss = str(date[change_in_amount.index(greatestloss)])
+
+
+
 totalmonths = len(date)
 totalprofitloss = sum(amount)
-greatestprofit = max(profit)
+
 #print(profit)
 #print(losses)
 #print (date)
@@ -36,4 +44,7 @@ greatestprofit = max(profit)
 #print(totalprofitloss)
 #print(greatestprofit)
 #print(change_in_amount)
-print (round(avg_change, 2))
+#print (round(avg_change, 2))
+print(greatestloss)
+#print(month_greatest_profit)
+print(month_greatest_loss)
